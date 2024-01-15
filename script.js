@@ -29,3 +29,48 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
+/* SELECTING, CREATING AND DELETING ELEMENTS */
+
+// Selecting elements
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
+
+const header = document.querySelector('.header');
+const allSections = document.querySelectorAll('.section');
+console.log(allSections);
+document.getElementById('section--1');
+
+const allButtons = document.getElementsByTagName('button');
+console.log(allButtons);
+
+const allText = document.getElementsByTagName('p');
+console.log(allText);
+
+console.log(document.getElementsByClassName('btn'));
+
+// Creating Elements
+// .insertAdjancentHTML()
+
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+// message.textContent =
+// 'We use cookies to improve our functionality and analytics';
+message.innerHTML =
+  'We use cookies to improve our functionality and analytics <button class="btn btn--close-cookie">Got it!</button>';
+
+// header.prepend(message);
+header.append(message);
+// header.append(message.cloneNode(true));
+// header.before(message);
+// header.after(message);
+
+document.querySelector('.btn--close-cookie').addEventListener('click', () => {
+  // message.remove();
+  message.parentElement.removeChild(message);
+});
