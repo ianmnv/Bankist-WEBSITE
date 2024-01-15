@@ -74,3 +74,48 @@ document.querySelector('.btn--close-cookie').addEventListener('click', () => {
   // message.remove();
   message.parentElement.removeChild(message);
 });
+
+/* STYLES, ATTRIBUTES AND CLASSES */
+
+/* STYLES */
+message.style.backgroundColor = '#37383d';
+message.style.width = '103.3%';
+
+console.log(message.style.height);
+console.log(message.style.color);
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+// ATTRIBUTES
+
+const logo = document.querySelector('.nav__logo');
+
+console.log(logo.src);
+console.log(logo.alt);
+console.log(logo.designer);
+console.log(logo.className);
+
+console.log(logo.getAttribute('designer'));
+logo.alt = 'Beautiful logo Bank';
+
+logo.setAttribute('company', 'Bankist');
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+// Data atributes
+console.log(logo.dataset.versionNumber);
+
+// CLASSES
+logo.classList.add('j', 'c');
+logo.classList.remove('j', 'c');
+logo.classList.toggle('j');
+logo.classList.contains('j');
+
+logo.className = 'color';
