@@ -35,7 +35,7 @@ document.addEventListener('keydown', function (e) {
 ////////////////////////////////////////////////////////////////////////////////////
 
 /* SELECTING, CREATING AND DELETING ELEMENTS */
-
+/*
 // Selecting elements
 console.log(document.documentElement);
 console.log(document.head);
@@ -74,10 +74,10 @@ document.querySelector('.btn--close-cookie').addEventListener('click', () => {
   // message.remove();
   message.parentElement.removeChild(message);
 });
-
+*/
 /* STYLES, ATTRIBUTES AND CLASSES */
-
 /* STYLES */
+/*
 message.style.backgroundColor = '#37383d';
 message.style.width = '103.3%';
 
@@ -119,3 +119,38 @@ logo.classList.toggle('j');
 logo.classList.contains('j');
 
 logo.className = 'color';
+*/
+
+// IMPLEMENTING SMOOTH SCROLLING
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+
+const section1 = document.getElementById('section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coors = section1.getBoundingClientRect();
+  console.log(s1coors);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+
+  console.log(
+    'height/width of viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Scrolling
+  // window.scrollTo(
+  //   s1coors.left + window.pageXOffset,
+  //   s1coors.top + window.pageYOffset
+  // );
+  // window.scrollTo({
+  //   left: s1coors.left + window.pageXOffset,
+  //   top: s1coors.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
