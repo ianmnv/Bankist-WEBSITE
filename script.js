@@ -1,12 +1,15 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.getElementById('section--1');
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -27,6 +30,59 @@ overlay.addEventListener('click', closeModal);
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
+  }
+});
+
+// IMPLEMENTING SMOOTH SCROLLING
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coors = section1.getBoundingClientRect();
+  console.log(s1coors);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+
+  console.log(
+    'height/width of viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Scrolling
+  // window.scrollTo(
+  //   s1coors.left + window.pageXOffset,
+  //   s1coors.top + window.pageYOffset
+  // );
+  // window.scrollTo({
+  //   left: s1coors.left + window.pageXOffset,
+  //   top: s1coors.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+// --EVENT DELEGATION: IMPLEMENTING PAGE NAVEGATION--
+
+// document.querySelectorAll('.nav__link').forEach(function (el, i) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//     // document
+//     //   .getElementById(`section--${i + 1}`)
+//     //   .scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
 
@@ -121,42 +177,8 @@ logo.classList.contains('j');
 logo.className = 'color';
 */
 
-// IMPLEMENTING SMOOTH SCROLLING
-
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-
-const section1 = document.getElementById('section--1');
-
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coors = section1.getBoundingClientRect();
-  console.log(s1coors);
-
-  console.log(e.target.getBoundingClientRect());
-
-  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
-
-  console.log(
-    'height/width of viewport',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-
-  // Scrolling
-  // window.scrollTo(
-  //   s1coors.left + window.pageXOffset,
-  //   s1coors.top + window.pageYOffset
-  // );
-  // window.scrollTo({
-  //   left: s1coors.left + window.pageXOffset,
-  //   top: s1coors.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // });
-
-  section1.scrollIntoView({ behavior: 'smooth' });
-});
-
 // TYPES OF EVENTS AND EVENT HANDLERS
-
+/*
 const h1 = document.querySelector('h1');
 
 const alertH1 = e => {
@@ -167,13 +189,15 @@ h1.addEventListener('mouseenter', alertH1);
 
 setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 
+// Old way of doing event handlers
 // h1.onmouseenter = e => {
 //   alert("You're hovering the h1 from the onmouseenter");
 // };
+*/
 
 // --EVENT PROPAGATION: BUBBLING AND CAPTURING--
 // --EVENT PROPAGATION IN PRACTICE--
-
+/*
 // rgb(255,255,255)
 const randomInt = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
@@ -204,3 +228,4 @@ document.querySelector('.nav').addEventListener(
   },
   true
 );
+*/
